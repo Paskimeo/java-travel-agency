@@ -1,9 +1,11 @@
 package agenziaViaggi;
 
 //localdata
-	import java.time.LocalDate;
-	import java.time.Period;
-	import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+	
 
 public class Vacanza {
 	
@@ -12,16 +14,19 @@ public class Vacanza {
 	
 	//attributi
 	private String destinazione;
-	private int giorno,mese,anno;
-	
+	private int giornoInizio,meseInizio,annoInizio;
+	private int giornoFine,meseFine,annoFine;
 	
 	//costruttore
-	public Vacanza(String destinazione, int giorno, int mese, int anno)  throws Exception  {
+	public Vacanza(String destinazione, int giornoInizio, int meseInizio, int annoInizio,int giornoFine, int meseFine, int annoFine)  throws Exception  {
 		super();
 		this.destinazione = destinazione;
-		this.giorno = giorno;
-		this.mese = mese;
-		this.anno = anno;
+		this.giornoInizio = giornoInizio;
+		this.meseInizio = meseInizio;
+		this.annoInizio = annoInizio;
+		this.giornoFine = giornoFine;
+		this.meseFine = meseFine;
+		this.annoFine = annoFine;
 		this.inizioViaggio = inizioViaggio;
 		this.fineViaggio = fineViaggio;
 		
@@ -41,29 +46,64 @@ public class Vacanza {
 		this.destinazione = destinazione;
 	}
 
-	public int getGiorno() {
-		return giorno;
+	public int getGiornoInizio() {
+		return giornoInizio;
 	}
 
-	public void setGiorno(int giorno) {
-		this.giorno = giorno;
+	public void setGiornoInizio(int giornoInizio) {
+		this.giornoInizio = giornoInizio;
 	}
 
-	public int getMese() {
-		return mese;
+	public int getMeseInizio() {
+		return meseInizio;
 	}
 
-	public void setMese(int mese) {
-		this.mese = mese;
+	public void setMeseInizio(int meseInizio) {
+		this.meseInizio = meseInizio;
 	}
 
-	public int getAnno() {
-		return anno;
+	public int getAnnoInizio() {
+		return annoInizio;
 	}
 
-	public void setAnno(int anno) {
-		this.anno = anno;
+	public void setAnno(int annoInizio) {
+		this.annoInizio= annoInizio;
 	}
+
+	public int getGiornoFine() {
+		return giornoFine;
+	}
+
+
+	public void setGiornoFine(int giornoFine) {
+		this.giornoFine = giornoFine;
+	}
+
+
+	public int getMeseFine() {
+		return meseFine;
+	}
+
+
+	public void setMeseFine(int meseFine) {
+		this.meseFine = meseFine;
+	}
+
+
+	public int getAnnoFine() {
+		return annoFine;
+	}
+
+
+	public void setAnnoFine(int annoFine) {
+		this.annoFine = annoFine;
+	}
+
+
+	public void setAnnoInizio(int annoInizio) {
+		this.annoInizio = annoInizio;
+	}
+
 
 	public LocalDate getInizioViaggio() {
 		return inizioViaggio;
@@ -82,9 +122,9 @@ public class Vacanza {
 	}
 	
 	//metod composizione date
-		LocalDate inizioViaggio = LocalDate.of(mese, giorno, anno);
+		LocalDate inizioViaggio = LocalDate.of(meseInizio, giornoInizio, annoInizio);
 		
-		LocalDate fineViaggio = LocalDate.of(mese, giorno, anno);
+		LocalDate fineViaggio = LocalDate.of(meseFine, giornoFine, annoFine);
 
 		
 		
@@ -114,10 +154,29 @@ public class Vacanza {
 				if(destinazione == null)
 					throw new Exception("devi isnerire un luogo di destinazione");
 			}
+			
+			
+			private String formattaDataInizio() {
+				
+				return inizioViaggio.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+				
+			}
+			
+			private String formattaDataFine() {
+				
+				return fineViaggio.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+				
+			}
+			
+			
+			
 
 			public String toString() {
+				
+				String Stampa;
+				
 				Period durataVacanza = Period.between(inizioViaggio, fineViaggio);
 				
-				return "la tua vacanza durerà: " + durataVacanza + " con destionazione: " + destinazione + "dal " + inizioViaggio + " al " + fineViaggio + "il tuo biglietto è stato creato";
+				return Stampa = "la tua vacanza durerà: " + durataVacanza + " con destionazione: " + destinazione + "dal " + inizioViaggio + " al " + fineViaggio + "il tuo biglietto è stato creato";
 			}
 }
