@@ -16,7 +16,7 @@ public class Vacanza {
 	
 	
 	//costruttore
-	public Vacanza(String destinazione, int giorno, int mese, int anno) {
+	public Vacanza(String destinazione, int giorno, int mese, int anno)  throws Exception  {
 		super();
 		this.destinazione = destinazione;
 		this.giorno = giorno;
@@ -24,6 +24,11 @@ public class Vacanza {
 		this.anno = anno;
 		this.inizioViaggio = inizioViaggio;
 		this.fineViaggio = fineViaggio;
+		
+		
+		controlloInizioVacanza();
+		controlloFineVacanza();
+		controlloDestinazione();
 	}
 	
 	
@@ -76,7 +81,7 @@ public class Vacanza {
 		this.fineViaggio = fineViaggio;
 	}
 	
-	//metodi
+	//metod composizione date
 		LocalDate inizioViaggio = LocalDate.of(mese, giorno, anno);
 		
 		LocalDate fineViaggio = LocalDate.of(mese, giorno, anno);
@@ -84,7 +89,7 @@ public class Vacanza {
 		
 		
 	//metodi controllo date
-		public void controlloInizioVacanza(LocalDate inizioViaggio) throws Exception 
+		public void controlloInizioVacanza() throws Exception 
 		{
 	        if (inizioViaggio.equals(null))
 	            throw new Exception("inserisci una data per piacere, composta da giorno,mese,anno");
@@ -93,7 +98,7 @@ public class Vacanza {
 	            throw new Exception("La data non puo essere una data del passato");
 		}
 		
-		public void controlloFineVacanza(LocalDate fineViaggio) throws Exception 
+		public void controlloFineVacanza() throws Exception 
 		{
 	        if (fineViaggio.equals(null))
 	            throw new Exception("inserisci una data per piacere, composta da giorno,mese,anno");
@@ -108,5 +113,11 @@ public class Vacanza {
 			{
 				if(destinazione == null)
 					throw new Exception("devi isnerire un luogo di destinazione");
+			}
+
+			public String toString() {
+				Period durataVacanza = Period.between(inizioViaggio, fineViaggio);
+				
+				return "la tua vacanza durerà: " + durataVacanza + " con destionazione: " + destinazione + "dal " + inizioViaggio + " al " + fineViaggio + "il tuo biglietto è stato creato";
 			}
 }
