@@ -83,14 +83,14 @@ public class Vacanza {
 
 		
 		
-	//metodi controllo
+	//metodi controllo date
 		public void controlloInizioVacanza(LocalDate inizioViaggio) throws Exception 
 		{
 	        if (inizioViaggio.equals(null))
 	            throw new Exception("inserisci una data per piacere, composta da giorno,mese,anno");
 		
 	        if (inizioViaggio.isBefore(LocalDate.now()))
-	            throw new Exception("La non puo essere una data del passato");
+	            throw new Exception("La data non puo essere una data del passato");
 		}
 		
 		public void controlloFineVacanza(LocalDate fineViaggio) throws Exception 
@@ -98,7 +98,15 @@ public class Vacanza {
 	        if (fineViaggio.equals(null))
 	            throw new Exception("inserisci una data per piacere, composta da giorno,mese,anno");
 		
-	        if (fineViaggio.isBefore(LocalDate.now()))
-	            throw new Exception("La  non puo essere una data del passato");
+	        if (fineViaggio.isBefore(inizioViaggio))
+	            throw new Exception("La data non puo essere una data prima dell'inizio");
 		}
+		
+		
+		//metodo controllo destinazione
+			public void controlloDestinazione() throws Exception 
+			{
+				if(destinazione == null)
+					throw new Exception("devi isnerire un luogo di destinazione");
+			}
 }
