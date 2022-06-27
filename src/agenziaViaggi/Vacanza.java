@@ -22,6 +22,8 @@ public class Vacanza {
 		this.giorno = giorno;
 		this.mese = mese;
 		this.anno = anno;
+		this.inizioViaggio = inizioViaggio;
+		this.fineViaggio = fineViaggio;
 	}
 	
 	
@@ -79,4 +81,24 @@ public class Vacanza {
 		
 		LocalDate fineViaggio = LocalDate.of(mese, giorno, anno);
 
+		
+		
+	//metodi controllo
+		public void controlloInizioVacanza(LocalDate inizioViaggio) throws Exception 
+		{
+	        if (inizioViaggio.equals(null))
+	            throw new Exception("inserisci una data per piacere, composta da giorno,mese,anno");
+		
+	        if (inizioViaggio.isBefore(LocalDate.now()))
+	            throw new Exception("La non puo essere una data del passato");
+		}
+		
+		public void controlloFineVacanza(LocalDate fineViaggio) throws Exception 
+		{
+	        if (fineViaggio.equals(null))
+	            throw new Exception("inserisci una data per piacere, composta da giorno,mese,anno");
+		
+	        if (fineViaggio.isBefore(LocalDate.now()))
+	            throw new Exception("La  non puo essere una data del passato");
+		}
 }
